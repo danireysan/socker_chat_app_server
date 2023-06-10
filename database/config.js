@@ -1,14 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const dbConnection = async() => { 
-    try {
-       console.log('Iniciando conexión a la base de datos') 
-    } catch (error) {
-       console.log(error);
-         throw new Error('Error en db - Hable con el administrador'); 
-    }    
-}
+const dbConnection = async () => {
+  try {
+    await mongoose.connect(process.env.DB_CNN);
+
+    console.log("DB Online");
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error en db - Hable con el administrador");
+  }
+};
 
 module.exports = {
-    dbConnection
-}
+  dbConnection,
+};
